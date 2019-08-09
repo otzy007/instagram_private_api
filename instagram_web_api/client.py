@@ -243,6 +243,7 @@ class Client(object):
                     'Content-Type': 'application/x-www-form-urlencoded'
                 })
         if query:
+            headers["x-csrftoken"] = self.csrftoken
             url += ('?' if '?' not in url else '&') + compat_urllib_parse.urlencode(query)
             sig = self.generate_request_signature(query, url)
             if sig:
